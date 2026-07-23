@@ -50,6 +50,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const scrollHints = document.querySelectorAll('.scroll-hint');
+
+  const closeAllScrollHints = () => {
+    scrollHints.forEach((btn) => {
+      btn.setAttribute('aria-expanded', 'false');
+      document.getElementById(btn.getAttribute('aria-controls')).hidden = true;
+    });
+  };
+
+  scrollHints.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const panel = document.getElementById(btn.getAttribute('aria-controls'));
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      closeAllScrollHints();
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+      }
+    });
+  });
+
+  document.addEventListener('click', closeAllScrollHints);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllScrollHints();
+  });
+
   const contactForm = document.getElementById('contact-form');
 
   if (contactForm) {
