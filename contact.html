@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — JSdigital</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="logo">JS<span>digital</span></a>
+    <nav>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#work">Work</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html" class="nav-cta">Get a Quote</a>
+    </nav>
+  </div>
+</header>
+
+<section class="section page-hero">
+  <div class="container">
+    <h1>Let's build something.</h1>
+    <p class="subhead">Tell me about your project and I'll get back to you within 1–2 business days.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-layout">
+
+    <form class="contact-form reveal" id="contact-form" action="https://formspree.io/f/xwvgnlqe" method="POST">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="budget">Approximate budget</label>
+      <select id="budget" name="budget">
+        <option>Under £500</option>
+        <option>£500–£1,500</option>
+        <option>£1,500–£5,000</option>
+        <option>Not sure yet</option>
+      </select>
+
+      <label for="message">Tell me about your project</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <button type="submit" class="btn btn-primary">Send message</button>
+      <p class="form-error" id="form-error" hidden>Something went wrong sending that — please email hello@JSdigital.dev directly instead.</p>
+    </form>
+
+    <div class="contact-info reveal">
+      <h3>Or reach out directly</h3>
+      <p><a href="mailto:hello@JSdigital.dev">hello@JSdigital.dev</a></p>
+      <p>Based in Beaconsfield, near London — working with clients everywhere.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 JSdigital. All rights reserved.</p>
+    <p><a href="mailto:hello@JSdigital.dev">hello@JSdigital.dev</a></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
