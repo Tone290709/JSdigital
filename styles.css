@@ -495,6 +495,13 @@ a { color: var(--accent); text-decoration: none; }
   font-size: 0.85rem;
   font-style: italic;
 }
+.pricing-teaser-grid .price-card { text-align: center; }
+.pricing-teaser-grid .badge { margin-left: auto; margin-right: auto; }
+.pricing-teaser-link {
+  text-align: center;
+  margin-top: 30px;
+  font-weight: 600;
+}
 
 /* Contact */
 .contact-layout {
