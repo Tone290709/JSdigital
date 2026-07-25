@@ -294,6 +294,11 @@ a { color: var(--accent); text-decoration: none; }
 }
 
 /* Portfolio */
+.portfolio-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
 .portfolio-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -534,6 +539,35 @@ a { color: var(--accent); text-decoration: none; }
   line-height: 1.6;
 }
 .faq-item p a { font-weight: 600; }
+
+/* Case study */
+.case-study { max-width: 720px; margin: 0 auto; }
+.case-study h2 { margin-top: 40px; margin-bottom: 16px; font-size: 1.5rem; }
+.case-study h2:first-child { margin-top: 0; }
+.case-study p { line-height: 1.7; margin-bottom: 16px; }
+.case-study-quote {
+  border-left: 3px solid var(--accent);
+  padding-left: 20px;
+  margin: 24px 0;
+}
+.case-study-quote p {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.case-study-quote footer {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+.case-study-cta {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.case-study-cta p { margin-bottom: 20px; }
 
 /* Contact */
 .contact-layout {
