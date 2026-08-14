@@ -4,6 +4,7 @@
   --text: #f2f4f2;
   --accent: #22c55e;
   --accent-dark: #16a34a;
+  --accent-2: #22d3ee;
   --gray: #93a093;
   --border: #263026;
   --radius: 10px;
@@ -44,6 +45,52 @@ body::after {
   pointer-events: none;
 }
 
+/* Ambient background: secondary-color blob, grain texture, twinkling particles.
+   Additive layers behind the existing grid/blob system above. */
+.bg-blob-2 {
+  content: '';
+  position: fixed;
+  inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 72% 22%, rgba(34, 211, 238, 0.24), transparent 42%),
+    radial-gradient(circle at 20% 82%, rgba(34, 211, 238, 0.18), transparent 40%);
+  animation: bgDrift2 22s ease-in-out infinite alternate;
+}
+/* Once JS takes over with pointer-driven parallax, hand off from the
+   autonomous keyframe to the inline transform it sets on mousemove. */
+.bg-blob-2.is-reactive {
+  animation: none;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bg-grain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+.bg-particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.bg-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 calc(6px + var(--proximity, 0) * 18px) calc(1px + var(--proximity, 0) * 2px) currentColor;
+  animation: particleTwinkle var(--dur, 5s) ease-in-out var(--delay, 0s) infinite;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+}
+
 /* Cursor glow */
 .cursor-glow {
   position: fixed;
@@ -78,6 +125,17 @@ h3 { font-size: 1.2rem; margin-bottom: 10px; }
 p { color: var(--gray); }
 
 a { color: var(--accent); text-decoration: none; }
+
+/* Keyboard focus: cyan ties interactive/focus states to the accent-2 used
+   for cursor-reactive background elements, distinct from the brand green. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
 
 /* Header */
 .site-header {
@@ -239,9 +297,9 @@ a { color: var(--accent); text-decoration: none; }
   border: 1px solid var(--border);
 }
 .btn-secondary:hover {
-  border-color: var(--accent);
+  border-color: var(--accent-2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(34, 197, 94, 0.15);
+  box-shadow: 0 8px 18px rgba(34, 211, 238, 0.15);
 }
 
 /* Sections */
@@ -601,7 +659,8 @@ a { color: var(--accent); text-decoration: none; }
 .contact-form select:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: var(--accent);
+  border-color: var(--accent-2);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
 }
 .contact-form button {
   margin-top: 20px;
@@ -660,6 +719,14 @@ a { color: var(--accent); text-decoration: none; }
 @keyframes bgDrift {
   from { transform: translate(0, 0) scale(1); }
   to { transform: translate(3%, -3%) scale(1.08); }
+}
+@keyframes bgDrift2 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-4%, 4%) scale(1.1); }
+}
+@keyframes particleTwinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: var(--peak, 1); }
 }
 
 .reveal {
